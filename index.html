@@ -161,8 +161,10 @@
             100% { transform: translateX(-100%); }
         }
         body { padding-bottom: 40px; }
-        .leaflet-section ul { margin-left: 20px; color: #555; line-height: 1.8; }
-        .leaflet-section li { margin-bottom: 8px; }
+        .leaflet-section ul { margin-left: 0; list-style: none; color: #555; line-height: 1.8; }
+        .leaflet-section li { margin-bottom: 8px; display: flex; align-items: flex-start; gap: 10px; }
+        .leaflet-section p .li-icon { display: inline-block; margin-right: 6px; }
+        .li-icon { font-size: 1.15em; line-height: 1.5; flex-shrink: 0; }
         .dos-donts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px; }
         .dos-column   { background: #e8f8f5; border-radius: 8px; padding: 20px; border-top: 4px solid #16a085; }
         .donts-column { background: #fadbd8; border-radius: 8px; padding: 20px; border-top: 4px solid #c0392b; }
@@ -398,15 +400,15 @@
                 <div class="leaflet-section">
                     <h2 data-i18n="sec1Title">🧠 What is Epilepsy?</h2>
                     <p data-i18n="sec1Para1">Epilepsy is a long-term brain condition that causes repeated seizures.</p>
-                    <p data-i18n="sec1Para2">About 50 million people worldwide have epilepsy.</p>
+                    <p><span class="li-icon">🌍</span><span data-i18n="sec1Para2">About 50 million people worldwide have epilepsy.</span></p>
                     <h3 data-i18n="sec1SymTitle">Symptoms</h3>
                     <p data-i18n="sec1SymIntro">Seizure symptoms vary depending on the type. Symptoms may include:</p>
                     <ul>
-                        <li data-i18n="sec1Sym1">Short-term confusion</li>
-                        <li data-i18n="sec1Sym2">A staring spell</li>
-                        <li data-i18n="sec1Sym3">Stiff muscles</li>
-                        <li data-i18n="sec1Sym4">Jerking movements of the arms and legs</li>
-                        <li data-i18n="sec1Sym5">Loss of consciousness</li>
+                        <li><span class="li-icon">🌀</span><span data-i18n="sec1Sym1">Short-term confusion</span></li>
+                        <li><span class="li-icon">👀</span><span data-i18n="sec1Sym2">A staring spell</span></li>
+                        <li><span class="li-icon">💪</span><span data-i18n="sec1Sym3">Stiff muscles</span></li>
+                        <li><span class="li-icon">🦵</span><span data-i18n="sec1Sym4">Jerking movements of the arms and legs</span></li>
+                        <li><span class="li-icon">😵</span><span data-i18n="sec1Sym5">Loss of consciousness</span></li>
                     </ul>
                 </div>
 
@@ -415,11 +417,11 @@
                     <h2 data-i18n="sec2Title">🔍 Causes Overview</h2>
                     <p data-i18n="sec2Intro">Epilepsy has no identifiable cause in about half the people. In the other half:</p>
                     <ul>
-                        <li data-i18n="sec2_1">Genetic influence: Some types of epilepsy run in families.</li>
-                        <li data-i18n="sec2_2">Head trauma: Car accidents or traumatic injuries can cause epilepsy.</li>
-                        <li data-i18n="sec2_3">Brain factors: Brain tumours or abnormal blood vessels.</li>
-                        <li data-i18n="sec2_4">Infections: Meningitis, HIV, viral encephalitis.</li>
-                        <li data-i18n="sec2_5">Developmental conditions: People with autism are more likely to have epilepsy.</li>
+                        <li><span class="li-icon">🧬</span><span data-i18n="sec2_1">Genetic influence: Some types of epilepsy run in families.</span></li>
+                        <li><span class="li-icon">🤕</span><span data-i18n="sec2_2">Head trauma: Car accidents or traumatic injuries can cause epilepsy.</span></li>
+                        <li><span class="li-icon">🧠</span><span data-i18n="sec2_3">Brain factors: Brain tumours or abnormal blood vessels.</span></li>
+                        <li><span class="li-icon">🦠</span><span data-i18n="sec2_4">Infections: Meningitis, HIV, viral encephalitis.</span></li>
+                        <li><span class="li-icon">🧩</span><span data-i18n="sec2_5">Developmental conditions: People with autism are more likely to have epilepsy.</span></li>
                     </ul>
                 </div>
 
@@ -428,13 +430,13 @@
                     <h2 data-i18n="sec3Title">⚡ Seizure Triggers</h2>
                     <p data-i18n="sec3Intro">Triggers don't cause epilepsy but may trigger seizures in people who have it. Common triggers:</p>
                     <ul>
-                        <li data-i18n="sec3_1">Missed medication doses</li>
-                        <li data-i18n="sec3_2">Lack of sleep or extreme tiredness</li>
-                        <li data-i18n="sec3_3">Stress or anxiety</li>
-                        <li data-i18n="sec3_4">Alcohol or recreational drugs</li>
-                        <li data-i18n="sec3_5">Flashing or flickering lights</li>
-                        <li data-i18n="sec3_6">Illness or fever</li>
-                        <li data-i18n="sec3_7">Skipping meals or low blood sugar</li>
+                        <li><span class="li-icon">💊</span><span data-i18n="sec3_1">Missed medication doses</span></li>
+                        <li><span class="li-icon">😴</span><span data-i18n="sec3_2">Lack of sleep or extreme tiredness</span></li>
+                        <li><span class="li-icon">😰</span><span data-i18n="sec3_3">Stress or anxiety</span></li>
+                        <li><span class="li-icon">🍷</span><span data-i18n="sec3_4">Alcohol or recreational drugs</span></li>
+                        <li><span class="li-icon">💡</span><span data-i18n="sec3_5">Flashing or flickering lights</span></li>
+                        <li><span class="li-icon">🤒</span><span data-i18n="sec3_6">Illness or fever</span></li>
+                        <li><span class="li-icon">🍽️</span><span data-i18n="sec3_7">Skipping meals or low blood sugar</span></li>
                     </ul>
                 </div>
 
@@ -443,10 +445,10 @@
                     <h2 data-i18n="sec4Title">💊 Treatment</h2>
                     <p data-i18n="sec4Intro">Treatment can help reduce or stop seizures. Options include:</p>
                     <ul>
-                        <li data-i18n="sec4_1">Anti-epileptic drugs (AED) — taken daily to control seizures</li>
-                        <li data-i18n="sec4_2">Surgery — considered when medication does not control seizures</li>
-                        <li data-i18n="sec4_3">Vagus nerve stimulation — to reduce seizure frequency</li>
-                        <li data-i18n="sec4_4">Dietary therapy — such as the ketogenic diet</li>
+                        <li><span class="li-icon">💊</span><span data-i18n="sec4_1">Anti-epileptic drugs (AED) — taken daily to control seizures</span></li>
+                        <li><span class="li-icon">🏥</span><span data-i18n="sec4_2">Surgery — considered when medication does not control seizures</span></li>
+                        <li><span class="li-icon">⚡</span><span data-i18n="sec4_3">Vagus nerve stimulation — to reduce seizure frequency</span></li>
+                        <li><span class="li-icon">🥑</span><span data-i18n="sec4_4">Dietary therapy — such as the ketogenic diet</span></li>
                     </ul>
                     <p style="margin-top:12px;font-style:italic;" data-i18n="sec4Note">Always follow your neurologist's advice for your specific treatment.</p>
                 </div>
