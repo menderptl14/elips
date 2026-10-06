@@ -603,7 +603,45 @@
             text-shadow:0 1px 4px rgba(0,0,0,.4);
         }
         @media (max-width:768px) { .lang-title { margin-bottom:6px; } .lang-tag { margin-bottom:22px; font-size:.8em; padding:0 12px; } }
-    </style>
+    
+        /* ── HOME BUTTONS: make it obvious they are tappable ──
+           Adds an arrow chip, brighter border, soft pulse ring, and clear hover / press / focus states.
+           Colours of the buttons are unchanged. Works for every language (no text changes). */
+        .home-action-btn { position:relative; -webkit-tap-highlight-color:transparent; }
+        #homeScreen.active .home-action-btn { padding-left:22px; padding-right:62px; }
+        .home-action-btn { border:2px solid rgba(255,255,255,.65); }
+
+        /* arrow chip on the right */
+        .home-action-btn::after {
+            content:""; position:absolute; right:10px; top:50%; width:36px; height:36px; margin-top:-18px;
+            border-radius:50%; background:#fff
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b1f6b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 5l7 7-7 7'/%3E%3C/svg%3E")
+                center/18px 18px no-repeat;
+            box-shadow:0 2px 8px rgba(0,0,0,.3);
+            animation:homeBtnNudge 1.8s ease-in-out infinite;
+        }
+        /* soft pulsing ring that draws the eye */
+        .home-action-btn::before {
+            content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+            animation:homeBtnPulse 2.4s ease-out infinite;
+        }
+        @keyframes homeBtnNudge { 0%,100% { transform:translateX(0); } 50% { transform:translateX(4px); } }
+        @keyframes homeBtnPulse {
+            0%   { box-shadow:0 0 0 0 rgba(255,255,255,.55); }
+            70%  { box-shadow:0 0 0 14px rgba(255,255,255,0); }
+            100% { box-shadow:0 0 0 0 rgba(255,255,255,0); }
+        }
+        .home-action-btn:hover::after { animation-duration:.9s; }
+        .home-action-btn:active { transform:translateY(1px) scale(.97); filter:brightness(.92); }
+        .home-action-btn:focus-visible { outline:3px solid #ffd54f; outline-offset:3px; }
+        @media (max-width:768px) {
+            #homeScreen.active .home-action-btn { padding-right:58px; }
+            .home-action-btn::after { width:32px; height:32px; margin-top:-16px; right:10px; background-size:16px 16px; }
+        }
+        @media (prefers-reduced-motion:reduce) {
+            .home-action-btn::after, .home-action-btn::before { animation:none; }
+        }
+        </style>
 </head>
 <body>
 
