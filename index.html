@@ -593,12 +593,16 @@
         /* ── LANGUAGE PAGE: "Dosage Guide" above the white card, on the dark overlay ── */
         #langOverlay { flex-direction:column; }
         .lang-title {
-            margin:0 0 26px; text-align:center; color:#fff; font-family:inherit; font-weight:800;
+            margin:0 0 8px; text-align:center; color:#fff; font-family:inherit; font-weight:800;
             font-size:clamp(1.9em,5vw,2.8em); letter-spacing:-.01em; line-height:1.1;
             text-shadow:0 2px 14px rgba(0,0,0,.5);
         }
         .lang-picker { max-height:calc(100dvh - 140px); }
-        @media (max-width:768px) { .lang-title { margin-bottom:22px; } }
+        .lang-tag {
+            margin:0 0 26px; text-align:center; color:#fff; opacity:.9; font-size:.95em; font-weight:600;
+            text-shadow:0 1px 4px rgba(0,0,0,.4);
+        }
+        @media (max-width:768px) { .lang-title { margin-bottom:6px; } .lang-tag { margin-bottom:22px; font-size:.8em; padding:0 12px; } }
     </style>
 </head>
 <body>
@@ -625,6 +629,7 @@
      ================================================================ -->
 <div id="langOverlay">
     <h1 class="lang-title">Dosage Guide</h1>
+    <div class="lang-tag">(CENOBAMATE) &middot; Your epilepsy medication companion</div>
     <div class="lang-picker">
         <span class="back-link">BACK</span>
         <h2>🌐 Select Language</h2>
