@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
@@ -463,6 +463,17 @@
         #datePickerModal { z-index:2500; }
 
         @media (max-width:768px) {
+            /* Symptoms: show exactly 2 items per row on mobile */
+            .sym-grid {
+                display:grid !important;
+                grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+                gap:20px 12px !important;
+                justify-items:center;
+            }
+            .sym-grid .sym-item {
+                width:100% !important;
+                max-width:150px;
+            }
             body { padding:12px 10px 48px; }
             header { padding:104px 16px 24px; }
             header h1 { font-size:1.45em; line-height:1.2; }
