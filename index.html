@@ -660,8 +660,34 @@
         #homeScreen.active .home-hero::after  { bottom:-54px; }
         @media (max-width: 768px) { body { padding-bottom: 0; } }
     </style>
+
+    <style id="global-reminder-note">
+        /* Client-approved statement shown on every page (incl. language picker) */
+        #globalNote {
+            position: fixed; left: 0; right: 0; bottom: 0; z-index: 3100;
+            background: #ffffff; border: 0;
+            padding: 3px 10px calc(3px + env(safe-area-inset-bottom, 0px));
+            box-shadow: 0 -2px 6px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+        #globalNote p { margin: 0; color: #000; font-size: 0.78em; font-weight: 500; line-height: 1.3; }
+        body { padding-bottom: var(--note-h, 48px) !important; }
+        @media print { #globalNote { display: none !important; } }
+    </style>
 </head>
 <body>
+
+<!-- Global statement: visible on every page -->
+<div id="globalNote"><p data-i18n="globalNote">Kindly consult your healthcare professional/physician regarding the appropriate dosage in case of any changes to your treatment regimen/any missed doses.</p></div>
+<script>
+(function(){
+    var n=document.getElementById('globalNote');
+    function setH(){ document.documentElement.style.setProperty('--note-h', n.offsetHeight+'px'); }
+    setH(); window.addEventListener('resize', setH); window.addEventListener('load', setH);
+    if (window.ResizeObserver) new ResizeObserver(setH).observe(n);
+})();
+</script>
+
 
 <!-- Sun Pharma brand lockup, shown on every screen except the language picker -->
 <div class="sun-logo" id="sunlogo">
@@ -1036,6 +1062,7 @@ const T = {
     disclaimer: "This medication guide is for informational purposes only. Always follow your doctor's prescription.",
     dosageDisclaimer: "Disclaimer: This dosage guide is a patient support tool intended to facilitate adherence to the prescribed treatment schedule and is based on the approved Prescribing Information. It is intended for use only when the complete treatment cycle has been prescribed by the treating physician. This guide does not replace professional medical advice, diagnosis, or treatment. Patients should consult their healthcare professional regarding any changes to treatment, missed doses, dose modifications, or substitution of medicine brands. Treatment decisions should always be based on the physician's clinical judgment. Sun Pharma makes reasonable efforts to ensure the accuracy of the information provided but does not guarantee its completeness or applicability to individual patient circumstances and shall not be liable for any treatment-related decisions, outcomes, or consequences arising from reliance on this guide.",
     supportInitiative: "A Patient Support Initiative By",
+    globalNote: "Kindly consult your healthcare professional/physician regarding the appropriate dosage in case of any changes to your treatment regimen/any missed doses.",
     calTitle: "📅 Your Treatment Calendar",
     startDateLabel: "Start Date:",
     printPreviewBtn: "👁️ Print Preview",
