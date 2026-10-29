@@ -154,27 +154,10 @@
         .leaflet-section h3 { color: #4B3472; margin: 18px 0 10px; font-size: 1.05em; }
         .leaflet-section p  { color: #555; line-height: 1.8; margin-bottom: 10px; }
 
-        /* ── RUNNING DISCLAIMER BAR (all pages except language select) ── */
-        #disclaimerBar {
-            display: none;
-            position: fixed; left: 0; right: 0; bottom: 0; z-index: 2000;
-            background: #ffffff; border-top: 2px solid #4B3472;
-            padding: 6px 0; overflow: hidden; white-space: nowrap;
-            box-shadow: 0 -3px 10px rgba(0,0,0,0.15);
-        }
-        #disclaimerBar.show { display: block; }
-        #disclaimerBar .marquee-track {
-            display: inline-block; padding-left: 100%;
-            animation: disclaimerScroll 45s linear infinite;
-        }
-        #disclaimerBar span {
-            color: #000000; font-size: 0.78em; font-weight: 500;
-        }
-        @keyframes disclaimerScroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
-        body { padding-bottom: 40px; }
+        /* ── Dosage Guide tab disclaimer (client-approved text) ── */
+        .dosage-disclaimer { background:#fff; border:1px solid #cbc3d9; border-left:4px solid #4B3472; border-radius:8px; padding:14px 16px; margin-top:20px; }
+        .dosage-disclaimer p { color:#333; font-size:0.85em; line-height:1.6; margin:0; text-align:justify; }
+
         .leaflet-section ul { margin-left: 0; list-style: none; color: #555; line-height: 1.8; }
         .leaflet-section li { margin-bottom: 8px; display: flex; align-items: flex-start; gap: 10px; }
         .leaflet-section p .li-icon { display: inline-block; margin-right: 6px; }
@@ -268,13 +251,14 @@
         /* ── Brand lockup (top-left logo badge) ── */
         .sun-logo {
             position:absolute; top:0; left:0; z-index:1500;
-            width:158px; height:134px; padding:12px 16px 18px 22px;
-            display:flex; align-items:center; justify-content:center;
+            width:210px; height:165px; padding:12px 16px 18px 22px;
+            display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; gap:5px;
             background:#fff; border-radius:0 0 100% 0;
             overflow:hidden;
             box-shadow:0 5px 18px rgba(0,0,0,.12);
         }
-        .sun-logo img { display:block; width:69px; height:auto;  margin-bottom:21px;margin-right: 47px;}
+        .sun-logo-text { display:block; max-width:125px; font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; font-size:11px; font-weight:600; line-height:1.25; color:#1B1F6B; }
+        .sun-logo img { display:block; width:69px; height:auto; margin:0; }
 
         header { background:linear-gradient(120deg,var(--purple) 0%, var(--navy) 100%); padding:44px 24px 34px; position:relative; overflow:hidden; }
         header::before { content:""; position:absolute; inset:0; background:radial-gradient(500px 260px at 85% 0%, rgba(255,255,255,.10), transparent 60%); pointer-events:none; }
@@ -438,7 +422,6 @@
         .calendar-btn { border:1px solid var(--line); color:var(--purple); background:#fff; }
         .calendar-btn:hover { background:var(--purple); color:white; }
         .calendar-btn-cancel { border-color:#cbc3d9; color:#79728e; background:#fff; }
-        #disclaimerBar { border-top:3px solid #1B1F6B; }
         footer { border-top:3px solid #1B1F6B; }
         input,select,textarea { accent-color:var(--purple); }
         button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible { outline:3px solid rgba(75,52,114,.45); outline-offset:3px; }
@@ -462,14 +445,6 @@
         .date-picker-actions { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
         .date-picker-actions .btn,.date-picker-actions .btn-calendar { flex:1; min-width:130px; max-width:170px; justify-content:center; padding:13px 18px; }
         #datePickerModal { z-index:2500; }
-        .dose-input-wrap { margin:0 auto 26px; max-width:320px; text-align:left; }
-        .dose-input-wrap label { display:block; color:#555; font-size:.95em; margin-bottom:8px; }
-        .dose-input-wrap input[type="number"] {
-            width:100%; padding:13px 16px; font-size:1.08em; color:var(--ink); font-family:inherit;
-            border:2px solid var(--purple); border-radius:10px; background:#fff;
-        }
-        .dose-hint { color:#79728e; font-size:.8em; margin-top:6px; }
-        .dose-error { color:var(--coral-ink); font-size:.85em; font-weight:600; margin-top:6px; display:none; }
 
         @media (max-width:768px) {
             /* Symptoms: show exactly 2 items per row on mobile */
@@ -492,7 +467,8 @@
             header h1 { font-size:1.45em; line-height:1.2; }
             .container { border-radius:16px; }
             .day { min-height:62px; padding:6px; }
-            .sun-logo { top:-26px ; left:-35px; width:118px; height:118px; padding:5px 7px 8px 10px; border:4px solid #fff; box-shadow:0 6px 40px rgba(0,0,0,.16); }
+            .sun-logo { top:-26px; left:-35px; width:138px; height:138px; padding:32px 8px 8px 40px; gap:4px; border:4px solid #fff; box-shadow:0 6px 40px rgba(0,0,0,.16); }
+            .sun-logo-text { font-size:7.5px; max-width:72px; }
             .sun-logo img { width:44px; max-width:100%; max-height:54px; object-fit:contain; margin:0; }
         }
         @media (prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none !important; animation:none !important; scroll-behavior:auto !important; } }
@@ -623,7 +599,7 @@
         /* ── LANGUAGE PAGE: "Dosage Guide" above the white card, on the dark overlay ── */
         #langOverlay { flex-direction:column; }
         .lang-title {
-            margin:0 0 8px; text-align:center; color:#fff; font-family:inherit; font-weight:800;
+            margin:24px 0 8px; text-align:center; color:#fff; font-family:inherit; font-weight:800;
             font-size:clamp(1.9em,5vw,2.8em); letter-spacing:-.01em; line-height:1.1;
             text-shadow:0 2px 14px rgba(0,0,0,.5);
         }
@@ -672,24 +648,25 @@
             .home-action-btn::after, .home-action-btn::before { animation:none; }
         }
         </style>
+
+    <style id="bottom-strip-fix">
+        /* Crawling disclaimer bar removed -> no need for the 40px strip it used to cover.
+           Home hero (blurred bg + purple overlay) now runs to the very bottom, so the plain body image never peeks through. */
+        body { padding-bottom: 0; }
+        body:has(#homeScreen.active) { padding-bottom: 0; }
+        /* layout/positions stay exactly as before; only the hero's background is stretched down over the old 40px strip */
+        #homeScreen.active .home-hero { overflow:visible; clip-path:inset(0 0 -40px 0); }
+        #homeScreen.active .home-hero::before { bottom:-40px; }
+        #homeScreen.active .home-hero::after  { bottom:-54px; }
+        @media (max-width: 768px) { body { padding-bottom: 0; } }
+    </style>
 </head>
 <body>
 
 <!-- Sun Pharma brand lockup, shown on every screen except the language picker -->
 <div class="sun-logo" id="sunlogo">
+    <span class="sun-logo-text" data-i18n="supportInitiative">A Patient Support Initiative By</span>
     <img src="sun-pharma.png" alt="Sun Pharma">
-</div>
-
-<!-- ================================================================
-     RUNNING DISCLAIMER BAR
-     Shown fixed at the bottom on every page. It sits behind the
-     language-picker overlay (lower z-index), so it is not visible
-     on the language selection screen, and appears on all other pages.
-     ================================================================ -->
-<div id="disclaimerBar">
-    <div class="marquee-track">
-        <span>Disclaimer: The digital content presented in this material is Conceptualized/Developed by Suerte Publishers for Sun Pharma. This digital content is for patient education/awareness purpose only. It does not replace the advice or counsel of a doctor or health care professional. Sun makes every effort to provide information that is accurate and timely, but makes no guarantee in this regard. You should consult with, and rely only on the advice of, your physician or health care professional. Although great care has been taken in compiling and checking the information, the Suerte Publishers and its associates or agents, and sponsors shall not be responsible, or in any way liable for any errors, omission or inaccuracies in this material whether arising from negligence or otherwise however, or for any consequences arising therefrom.</span>
-    </div>
 </div>
 
 <!-- ================================================================
@@ -794,10 +771,6 @@
                         <strong data-i18n="startDateLabel">Start Date:</strong>
                         <span class="value" id="startDate"></span>
                     </div>
-                    <div class="summary-item" id="startDoseRow" style="display:none;">
-                        <strong>Starting Dosage:</strong>
-                        <span class="value" id="startDoseValue"></span>
-                    </div>
                 </div>
                 <div class="button-container" style="margin-top:20px;">
                     <button class="btn btn-download" onclick="showPrintPreview()" data-i18n="printPreviewBtn">👁️ Print Preview</button>
@@ -823,6 +796,10 @@
                 <div style="background:#fff3cd;border-left:4px solid #4b3472;padding:15px;margin-top:20px;border-radius:5px;">
                     <p style="color:#333;margin:0;font-size:0.95em;" data-i18n="consultNote">Please consult your doctor for future dosage guidance.</p>
                 </div>
+            </div>
+
+            <div class="dosage-disclaimer" id="dosageDisclaimer">
+                <p data-i18n="dosageDisclaimer">Disclaimer: This dosage guide is a patient support tool intended to facilitate adherence to the prescribed treatment schedule and is based on the approved Prescribing Information. It is intended for use only when the complete treatment cycle has been prescribed by the treating physician. This guide does not replace professional medical advice, diagnosis, or treatment. Patients should consult their healthcare professional regarding any changes to treatment, missed doses, dose modifications, or substitution of medicine brands. Treatment decisions should always be based on the physician's clinical judgment. Sun Pharma makes reasonable efforts to ensure the accuracy of the information provided but does not guarantee its completeness or applicability to individual patient circumstances and shall not be liable for any treatment-related decisions, outcomes, or consequences arising from reliance on this guide.</p>
             </div>
         </div>
         <footer><p></p></footer>
@@ -1003,12 +980,6 @@
                 <input type="date" id="startDateInput">
                 <span class="date-input-icon">📅</span>
             </div>
-            <div class="dose-input-wrap">
-                <label for="startDoseInput">Starting Dosage (mg) <span style="opacity:.7">(optional)</span></label>
-                <input type="number" id="startDoseInput" min="0" step="any" inputmode="decimal" placeholder="Leave empty for default schedule">
-                <div class="dose-hint">Approved steps: 12.5, 25, 50, 100, 150, 200 mg</div>
-                <div class="dose-error" id="startDoseError"></div>
-            </div>
             <div class="date-picker-actions">
                 <button class="btn" onclick="setStartDate()" data-i18n="confirmBtn">✓ Confirm</button>
                 <button class="btn btn-calendar" onclick="setStartDateToday()" data-i18n="todayBtn">📅 Today</button>
@@ -1063,6 +1034,8 @@ const T = {
     homeCard3Desc: "Learn about epilepsy, symptoms, causes",
     importantLabel: "⚠️ Important:",
     disclaimer: "This medication guide is for informational purposes only. Always follow your doctor's prescription.",
+    dosageDisclaimer: "Disclaimer: This dosage guide is a patient support tool intended to facilitate adherence to the prescribed treatment schedule and is based on the approved Prescribing Information. It is intended for use only when the complete treatment cycle has been prescribed by the treating physician. This guide does not replace professional medical advice, diagnosis, or treatment. Patients should consult their healthcare professional regarding any changes to treatment, missed doses, dose modifications, or substitution of medicine brands. Treatment decisions should always be based on the physician's clinical judgment. Sun Pharma makes reasonable efforts to ensure the accuracy of the information provided but does not guarantee its completeness or applicability to individual patient circumstances and shall not be liable for any treatment-related decisions, outcomes, or consequences arising from reliance on this guide.",
+    supportInitiative: "A Patient Support Initiative By",
     calTitle: "📅 Your Treatment Calendar",
     startDateLabel: "Start Date:",
     printPreviewBtn: "👁️ Print Preview",
@@ -2229,7 +2202,6 @@ var lang = 'en';
 function selectLanguage(code) {
     lang = code;
     document.getElementById('langOverlay').style.display = 'none';
-    document.getElementById('disclaimerBar').classList.add('show');
     document.documentElement.lang = code;
     document.documentElement.dir = (code === 'ur') ? 'rtl' : 'ltr';
     applyTranslations();
@@ -2309,70 +2281,16 @@ function setUrlParameter(param, value) {
     window.history.replaceState({}, document.title, window.location.pathname + '?' + urlParams.toString());
 }
 
-/* Approved dosage steps (unchanged default schedule: 14 days per step, last step runs to day 100).
-   A custom starting dose must be one of these steps; the schedule then continues
-   through the NEXT approved steps only - no other doses are ever generated. */
-var APPROVED_STEPS = [12.5, 25, 50, 100, 150, 200];
-var STEP_DAYS = 14, TOTAL_DAYS = 100;
-var startDose = null;                 // null = default schedule
-var defaultScheduleHTML = null;       // original <ul> markup, restored when dose is cleared
-
-function buildSchedule(fromDose) {
-    var idx = (fromDose === null) ? 0 : APPROVED_STEPS.indexOf(fromDose);
-    var out = [];
-    for (var i = idx; i < APPROVED_STEPS.length; i++) {
-        var from = (i - idx) * STEP_DAYS;
-        var last = (i === APPROVED_STEPS.length - 1);
-        out.push({ dose: APPROVED_STEPS[i], from: from, to: last ? TOTAL_DAYS : from + STEP_DAYS });
-    }
-    return out;
-}
-
 function getDosageForDate(date) {
     if (!startDate) return null;
     var days = Math.floor((date - startDate) / 86400000);
-    var sched = buildSchedule(startDose);
-    for (var i = 0; i < sched.length; i++) {
-        if (days >= sched[i].from && days < sched[i].to) return sched[i].dose;
-    }
+    if (days < 14)  return 12.5;
+    if (days < 28)  return 25;
+    if (days < 42)  return 50;
+    if (days < 56)  return 100;
+    if (days < 70)  return 150;
+    if (days < 100) return 200;
     return null;
-}
-
-/* Reads the optional dose input. Returns {ok:true, value:null|number} */
-function readStartDose() {
-    var el = document.getElementById('startDoseInput'), err = document.getElementById('startDoseError');
-    err.style.display = 'none';
-    var raw = el.value.trim();
-    if (raw === '') return { ok: true, value: null };
-    var v = parseFloat(raw);
-    if (isNaN(v) || APPROVED_STEPS.indexOf(v) === -1) {
-        err.textContent = 'Please enter an approved dose: ' + APPROVED_STEPS.join(', ') + ' mg, or leave empty.';
-        err.style.display = 'block';
-        return { ok: false };
-    }
-    return { ok: true, value: v };
-}
-
-/* Shows the dosage schedule list: original markup for default, generated rows for a custom start */
-function renderScheduleList() {
-    var ul = document.querySelector('.dosage-list');
-    if (defaultScheduleHTML === null) defaultScheduleHTML = ul.innerHTML;
-    var row = document.getElementById('startDoseRow');
-    if (startDose === null) {
-        ul.innerHTML = defaultScheduleHTML;
-        row.style.display = 'none';
-        applyTranslations();
-        return;
-    }
-    var sched = buildSchedule(startDose), html = '';
-    sched.forEach(function(st, i) {
-        var wFrom = Math.floor(st.from / 7) + 1, wTo = Math.ceil(st.to / 7);
-        var weeks = (i === sched.length - 1) ? 'Week ' + wFrom + ' onwards' : 'Week ' + wFrom + '–' + wTo;
-        html += '<li><strong>Days ' + (st.from + 1) + '–' + st.to + ' (' + weeks + '):</strong> ' + st.dose + ' mg</li>';
-    });
-    ul.innerHTML = html;
-    document.getElementById('startDoseValue').textContent = startDose + ' mg';
-    row.style.display = 'flex';
 }
 
 function initializeCalendar() {
@@ -2438,7 +2356,6 @@ function initializeCalendar() {
         curMon++;
         if (curMon>11){curMon=0;curYear++;}
     }
-    renderScheduleList();
     document.getElementById('datePickerModal').style.display='none';
     showScreen('calendar');
 }
@@ -2446,30 +2363,18 @@ function initializeCalendar() {
 function setStartDate() {
     var v = document.getElementById('startDateInput').value;
     if (!v) { alert('Please select a date'); return; }
-    var d = readStartDose(); if (!d.ok) return;
-    startDose = d.value; syncDoseUrl();
     startDate = new Date(v); startDate.setHours(0,0,0,0);
     setUrlParameter('startDate', v);
     initializeCalendar();
 }
 function setStartDateToday() {
-    var d = readStartDose(); if (!d.ok) return;
-    startDose = d.value; syncDoseUrl();
     startDate = new Date(); startDate.setHours(0,0,0,0);
     var s = startDate.toISOString().split('T')[0];
     setUrlParameter('startDate', s);
     initializeCalendar();
 }
-function syncDoseUrl() {
-    if (startDose === null) {
-        var u = new URLSearchParams(window.location.search); u.delete('startDose');
-        window.history.replaceState({}, document.title, window.location.pathname + (u.toString() ? '?' + u.toString() : ''));
-    } else { setUrlParameter('startDose', startDose); }
-}
 
 document.getElementById('startDateInput').value = new Date().toISOString().split('T')[0];
-var urlDose = parseFloat(getUrlParameter('startDose'));
-if (APPROVED_STEPS.indexOf(urlDose) !== -1) { startDose = urlDose; document.getElementById('startDoseInput').value = urlDose; }
 var urlSD = getUrlParameter('startDate');
 if (urlSD) {
     try {
@@ -2492,16 +2397,26 @@ window.onclick = function(e) {
 function showCalendarModal()  { document.getElementById('calendarModal').style.display='block'; }
 function closeCalendarModal() { document.getElementById('calendarModal').style.display='none';  }
 
+var REMINDER_NOTE = 'Kindly consult your healthcare professional/physician regarding the appropriate dosage in case of any changes to your treatment regimen/any missed doses.';
+/* RFC 5545 line folding for long DESCRIPTION lines */
+function icsFold(text) {
+    return text.split('\n').map(function(l) {
+        var out = '';
+        while (l.length > 73) { out += l.slice(0, 73) + '\n '; l = l.slice(73); }
+        return out + l;
+    }).join('\n');
+}
+
 function addToGoogleCalendar() {
     var d=new Date(startDate), dos=getDosageForDate(d);
     var dt=d.toISOString().split('T')[0];
-    window.open('https://calendar.google.com/calendar/u/0/r/eventedit?text='+encodeURIComponent('Medication - '+dos+'mg')+'&dates='+dt.replace(/-/g,'')+'/'+dt.replace(/-/g,''),'_blank');
+    window.open('https://calendar.google.com/calendar/u/0/r/eventedit?text='+encodeURIComponent('Medication - '+dos+'mg')+'&details='+encodeURIComponent(REMINDER_NOTE)+'&dates='+dt.replace(/-/g,'')+'/'+dt.replace(/-/g,''),'_blank');
     closeCalendarModal();
 }
 function addToOutlook() {
     var d=new Date(startDate), dos=getDosageForDate(d);
     var dt=d.toISOString().split('T')[0];
-    window.open('https://outlook.office.com/calendar/0/deeplink/compose?subject='+encodeURIComponent('Medication - '+dos+'mg')+'&startdt='+dt+'T00:00:00&enddt='+dt+'T23:59:59','_blank');
+    window.open('https://outlook.office.com/calendar/0/deeplink/compose?subject='+encodeURIComponent('Medication - '+dos+'mg')+'&body='+encodeURIComponent(REMINDER_NOTE)+'&startdt='+dt+'T00:00:00&enddt='+dt+'T23:59:59','_blank');
     closeCalendarModal();
 }
 function addToAppleCalendar() { downloadICS(); closeCalendarModal(); }
@@ -2516,15 +2431,16 @@ function downloadICS() {
         ics+='BEGIN:VEVENT\n';
         ics+='DTSTART;VALUE=DATE:'+dt+'\n';
         ics+='DTEND;VALUE=DATE:'+dt+'\n';
-        ics+=inc ? 'SUMMARY:⚠️ Dosage Increase - Now '+dos+'mg\nDESCRIPTION:Your dosage increases to '+dos+'mg today\n'
-                 : 'SUMMARY:Medication - '+dos+'mg\nDESCRIPTION:Take '+dos+'mg as prescribed\n';
+        ics+=inc ? 'SUMMARY:⚠️ Dosage Increase - Now '+dos+'mg\nDESCRIPTION:Your dosage increases to '+dos+'mg today.\\n\\n'+REMINDER_NOTE+'\n'
+                 : 'SUMMARY:Medication - '+dos+'mg\nDESCRIPTION:Take '+dos+'mg as prescribed.\\n\\n'+REMINDER_NOTE+'\n';
         ics+='UID:epilepsy-'+dt+'@dosetracker\n';
         ics+='DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z\n';
-        if (inc) { ics+='BEGIN:VALARM\nACTION:DISPLAY\nDESCRIPTION:Dosage increase to '+dos+'mg\nTRIGGER:-PT8H\nEND:VALARM\n'; }
+        if (inc) { ics+='BEGIN:VALARM\nACTION:DISPLAY\nDESCRIPTION:Dosage increase to '+dos+'mg.\\n\\n'+REMINDER_NOTE+'\nTRIGGER:-PT8H\nEND:VALARM\n'; }
         ics+='END:VEVENT\n';
         prev=dos; cur.setDate(cur.getDate()+1);
     }
     ics+='END:VCALENDAR';
+    ics=icsFold(ics);
     var blob=new Blob([ics],{type:'text/calendar;charset=utf-8'});
     var link=document.createElement('a');
     link.href=URL.createObjectURL(blob);
